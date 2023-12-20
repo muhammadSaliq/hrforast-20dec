@@ -1,0 +1,29 @@
+.back1 {
+    background-color: black;
+    color: orange
+} 
+.imgs1 {
+
+    width: 500px;
+    height: 450px;
+    padding-top: 60px;
+}
+.Hheads {
+    margin-right:  530px;
+    font-style: bold, italic;
+    font-size: 25px;
+    text-align: left;
+}
+
+.Hhheads {
+    margin-right:  510px;
+    font-style: bold, italic;
+    font-size: 25px;
+    text-align: left;
+}
+.imgs2 {
+
+    width: 500px;
+    height: 450px;
+    padding-top: 60px;
+}

@@ -1,0 +1,32 @@
+.rootcontainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+}
+.rootcontainer2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 60px auto;
+
+}
+.heado {
+    font-size: 40px;
+font-weight: bold;
+color: rgb(236, 116, 12);
+}
+.headoo {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+.divss {
+    background-color: #f9f6ee;
+}

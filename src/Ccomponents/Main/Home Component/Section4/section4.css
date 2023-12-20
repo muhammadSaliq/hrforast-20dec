@@ -1,0 +1,15 @@
+.back {
+    background-color: black;
+    color: orange
+} 
+.imgs {
+
+    width: 600px;
+    height: 550px;
+}
+.Heads {
+    margin-right:  350px;
+    font-style: bold, italic;
+    font-size: 25px;
+    text-align: left;
+}

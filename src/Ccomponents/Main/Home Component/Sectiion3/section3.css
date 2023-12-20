@@ -1,0 +1,15 @@
+.bback {
+    background-color: whitesmoke;
+    color: black;
+} 
+.imgs {
+
+    width: 600px;
+    height: 550px;
+}
+.Heads {
+    margin-right:  350px;
+    font-style: bold, italic;
+    font-size: 25px;
+    text-align: left;
+}

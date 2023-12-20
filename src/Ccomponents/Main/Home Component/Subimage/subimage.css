@@ -1,0 +1,44 @@
+.mainContent {
+    height: 80vh;
+    background-image: url("../../../../assets/subimage.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  .TESTIMONIALS {
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 40px;
+    background-color: white;
+    border-radius: 25px;
+  }
+  
+  .s-h-number {
+    color: #00ffac;
+    font-weight: 600;
+    position: relative;
+    top: 4px;
+    font-size: 10vh;
+  }
+  .mid-para{
+      width: 60vw;
+      font-size: 2rem;
+      /* margin-bottom: 400px; */
+  }
+  .star-img{
+      margin-left: 27%;
+  }
+  .btns {
+    background-color: rgb(236, 116, 12);
+    border-radius: 25px;
+
+  }
+  .btns:hover {
+    background-color: rgb(202, 95, 2);
+  }
+  .heads {
+    background-color:rgb(236, 116, 12) ;
+    border-radius: 25px;
+
+
+  }
