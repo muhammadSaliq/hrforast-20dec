@@ -103,11 +103,13 @@ const Addemployee = () => {
     const [responce  , setResponce] = useState("");
     const [CreatedbyUser  , setCreatedbyUser] = useState("");
     
+//result
+const [resultattr , setresultattr] = useState(false);
 
       const getAlldepartments = async () => {
 
         try {
-          const response = await axios.get(`http://localhost:8000/alldepartments`);
+          const response = await axios.get('http://localhost:8000/alldepartments');
           console.log("response: ", response);
           console.log(alldepartmentss);
           setalldepartmentss(response.data.data);
@@ -124,11 +126,11 @@ if (emloyeename && age && businessTravel && dailyRate && department && distanceF
     environmentSatisfaction <=4 && gender && hourlyRate && jobInvolvement <=4 && jobLevel <=5 && jobRole && jobSatisfaction <=4 && maritalStatus &&
     monthlyIncome && monthlyRate && numCompaniesWorked && over18 && overTime && percentSalaryHike && performanceRating <=4 &&
     relationshipSatisfaction <=4 && standardHours && stockOptionLevel <=3 && totalWorkingYears && trainingTimesLastYear <=6 && workLifeBalance <=4 &&
-    yearsAtCompany && yearsSinceLastPromotion && yearsWithCurrManager //&& CreatedbyUser
+    yearsAtCompany && yearsSinceLastPromotion && yearsWithCurrManager && CreatedbyUser
     ) {
 
           try {
-            const response = await axios.post('http://127.0.0.1:5000/Addemployee', {
+            const response = await axios.post('http://localhost:8000/addemployee', {
                 emloyeename,
                 Age: age,
                 BusinessTravel: businessTravel,
@@ -164,16 +166,18 @@ if (emloyeename && age && businessTravel && dailyRate && department && distanceF
                 YearsInCurrentRole: yearsInCurrentRole,
                 YearsSinceLastPromotion: yearsSinceLastPromotion,
                 YearsWithCurrManager:yearsWithCurrManager,
-                //CreatedbyUser
+                CreatedbyUser
                 
             });
-    return response
+
+
             // Handle the response according to your needs
             if (response.status === 201) {
               console.log('Employee successfully registered');
               setSnackbarMessage('Employee successfully registered');
               setSnackbarSeverity('success');
               setOpenSnackbar(true);
+
             } else {
               console.log('Employee failed');
               setSnackbarMessage('Employee registration failed');
@@ -281,8 +285,9 @@ if (emloyeename && age && businessTravel && dailyRate && department && distanceF
               return;
             }
 
-                            if (!educationField) {
-                                seteducationFielderror("please enter education field");
+                            if (!educationField || educationField === "Enter Education Field") {
+                              setEducationField("");
+                                seteducationFielderror("Please enter Education Field");
                 return;
               }
               // if (!educationField || !alphabetRegex.test(educationField) || educationField.length <= 0 || educationField.length > 4 || educationField.includes('e')) {
@@ -375,10 +380,17 @@ if (!jobLevel || jobLevel > 5) {
     setJobLevelerror("please enter job involvement B/W 1 to 5");
 return;
 }
-if (!jobRole) {
-    setJobRoleerror("please enter job role");
+if (!jobRole || jobRole === "Enter Job Role") {
+    setJobRole("")
+    setJobRoleerror("Please enter Job role");
 return;
 }
+
+// if (!maritalStatus || maritalStatus == "Enter Marital Status") {
+//   setMaritalStatus("");
+//   setMaritalStatuserror("please enter martial status");
+//   return;
+// }
 // if (!jobSatisfaction || jobSatisfaction > 4) {
 //     setJobSatisfactionerror("please enter job satisfation B/W 1 to 4");
 // return;
@@ -633,7 +645,7 @@ return;
 
         const getProfile = async () => {
           try {
-            let response = await axios.get(`http://localhost:8000/api/v1/profile`,
+            let response = await axios.get('http://localhost:8000/api/v1/profile',
               {
                 withCredentials: true,
                 headers: {
@@ -735,11 +747,24 @@ return;
                 {educationerror && <p className="error-message">{educationerror}</p>} 
                 
     </div>
-    <div className="relative z-0 w-full mb-6 group">
+    {/* <div className="relative z-0 w-full mb-6 group">
     <TextField fullWidth value={educationField} onChange={(event) => { setEducationField(event.target.value); seteducationFielderror("") }} name="educationField" label="Education Field" variant="outlined" />
                 {educationFielderror && <p className="error-message">{educationFielderror}</p>}
                 
-    </div>
+    </div> */}
+
+      <div className="relative z-0 w-full mb-6 group">
+            <select id="educationField" name='educationField'onChange={(event) => { setEducationField(event.target.value); seteducationFielderror("") }} className=" border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 0   ">
+              <option>Enter Education Field</option>
+              <option value="Life Sciences" >Life Sciences</option>
+              <option value="Medical">Medical</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Technical Degree">Technical Degree</option>
+              <option value="Human Resources">Human Resources</option>
+              <option value="Other">Other</option>
+      </select>
+      {educationFielderror && <p className="error-message">{educationFielderror}</p>}
+        </div>
 
     <div className="relative z-0 w-full mb-6 group">
     <TextField fullWidth value={employeeNumber}  onChange={(event) => {setEmployeeNumber(event.target.value); setEmployeeNumbererror("") }} type = "number" name="employeeNumber" label="Employee Number" variant="outlined" />
@@ -786,8 +811,26 @@ return;
    </div>
    <div className="relative z-0 w-full mb-6 group">
 
-   <TextField fullWidth value={jobRole} onChange={(event) => { setJobRole(event.target.value); setJobRoleerror("") }} name="jobRole" label="Job Role" variant="outlined" />
-                {jobRoleerror && <p className="error-message">{jobRoleerror}</p>}
+   {/* <TextField fullWidth value={jobRole} onChange={(event) => { setJobRole(event.target.value); setJobRoleerror("") }} name="jobRole" label="Job Role" variant="outlined" />
+                {jobRoleerror && <p className="error-message">{jobRoleerror}</p>} */}
+
+                <div className="relative z-0 w-full mb-6 group">
+      <select id="jobRole" name='jobRole'onChange={(event) => { setJobRole(event.target.value); setJobRoleerror("") }} className=" border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 0   ">
+        <option>Enter Job Role</option>
+        <option value="Sales Executive" >Sales Executive</option>
+        <option value="Research Scientist">Research Scientist</option>
+        <option value="Laboratory Technician">Laboratory Technician</option>
+        <option value="Manufacturing Director" >Manufacturing Director</option>
+        <option value="Healthcare Representative">Healthcare Representative</option>
+        <option value="Manager">Manager</option>
+        <option value="Sales Representative">Sales Representative</option>
+        <option value="Research Director">Research Director</option>
+        <option value="Human Resources">Human Resources</option>
+
+
+</select>
+{jobRoleerror && <p className="error-message">{jobRoleerror}</p>}
+  </div>
                 
    </div>
   </div>
@@ -949,7 +992,7 @@ return;
 </div>
 
 
-<Button fullWidth onClick={Addemployeedata} variant="contained">Add Employee</Button></div>
+<Button fullWidth onMouseEnter={()=> {setCreatedbyUser(responce.email)}} onClick={() => {Addemployeedata();}} variant="contained">Add Employee</Button></div>
 <Snackbar
             open={openSnackbar}
             autoHideDuration={6000}

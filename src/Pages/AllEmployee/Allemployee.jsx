@@ -176,6 +176,13 @@ let datetime = currDate + ' ' + currTime;
 
     const handlesubmit = async (id) => {
       try {
+        setsingeemloyee((prevEmployee) => {
+          return {
+            ...prevEmployee,
+            UpdatedbyUser: UpdatedbyUser,
+            Updatedtime: datetime,
+          };
+        });
           const UserData = { ...singeemloyee};
       const response = await axios.put(`http://localhost:8000/editemployee/${id}`, UserData);
       seteditboolean(true)
@@ -422,16 +429,22 @@ useEffect(() => {
                 <TextField fullWidth value={singeemloyee.YearsWithCurrManager} onChange={handlecchange} type = "number" name="YearsWithCurrManager
                 " placeholder="Years with Current Manager" variant="outlined" sx={{ marginBottom: '1rem' }}/>
                 {yearsWithCurrManagererror && <p className="error-message">{yearsWithCurrManagererror}</p>}
-                <p>updated by user</p>
+ {/*}               <p>updated by user</p>
                 <TextField fullWidth value={responce.email} onMouseEnter={handlecchange}  name="UpdatedbyUser" placeholder="Years with Current Manager" variant="outlined" sx={{ marginBottom: '1rem' }}/>
                 <p>updated time</p>
                 <TextField fullWidth value={datetime} onMouseEnter={handlecchange}  name="updatedtime" placeholder="Years with Current Manager" variant="outlined" sx={{ marginBottom: '1rem' }}/>
-
+              */}
           {/* Other fields similarly */}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
-          <Button onClick={()=> {handlesubmit(singeemloyee._id)}}>Save</Button>
+          <Button onMouseEnter={() => { setsingeemloyee((prevEmployee) => {
+    return {
+      ...prevEmployee,
+      UpdatedbyUser: responce.email,
+      updatedtime: datetime,
+    };
+  });}} onClick={()=> {handlesubmit(singeemloyee._id)}}>Save</Button>
         </DialogActions>
       </Dialog>
       </div>
